@@ -33,17 +33,7 @@ namespace TestTask.Controllers
                 return BadRequest("Matrix cannot be less then 2x2!");
             }
 
-            //validate whether matrix has wrong values
-            //foreach (var tile in tilesRequest.Tiles)  
-            //{
-            //    foreach(var item in tile)
-            //    {
-            //        if (item != 0 && item != 1)
-            //        {
-            //            return BadRequest("Matrix only applies 0 or 1 as a value!");
-            //        }
-            //    }
-            //}
+            //validate whether matrix has wrong values and same size lists
 
             for (int i = 0; i < tilesRequest.Tiles.Count; i++)
             {
@@ -59,17 +49,7 @@ namespace TestTask.Controllers
                 {
                     return BadRequest("Matrix rows must be the same size!");
                 }
-            }
-
-
-            //for (int i = 0; i < tilesRequest.Tiles.Count; i++)
-            //{
-            //    if (tilesRequest.Tiles[i].Count != tilesRequest.Tiles[0].Count)
-            //    {
-            //        return BadRequest("Matrix rows must be the same size!");
-            //    }
-            //}
-            
+            }  
 
             _tileService.SaveTiles(tilesRequest.Tiles);
 
