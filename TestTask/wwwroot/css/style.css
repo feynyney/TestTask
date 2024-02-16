@@ -1,0 +1,17 @@
+﻿body {
+}
+
+.tiles-element {
+    height: 30px;
+    width: 30px;
+    border: solid 1px;
+}
+
+.tiles-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.disabled-tile {
+    background: black;
+}

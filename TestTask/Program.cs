@@ -11,7 +11,12 @@ namespace TestTask
 
             builder.Services.AddControllers();
 
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
             builder.Services.AddSingleton<ITilesService, TilesService>();
+
+            builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 
@@ -26,16 +31,20 @@ namespace TestTask
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Tiles}");
-            });
+            app.MapControllerRoute(
+                name: "Home",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.MapControllerRoute(
+                name: "Tiles",
+                pattern: "{controller=Tiles}");
 
             app.Run();
         }

@@ -23,7 +23,7 @@ namespace TestTask.Services
             _tiles = tiles.ToList();
         }
 
-        static int CalculateParts(List<List<int>> grid)
+        private static int CalculateParts(List<List<int>> grid)
         {
             if (grid == null || grid.Count == 0 || grid[0].Count == 0)
                 return 0;
@@ -46,7 +46,7 @@ namespace TestTask.Services
             return parts;
         }
 
-        static void DFS(List<List<int>> grid, int row, int col, bool[,] visited)
+        private static void DFS(List<List<int>> grid, int row, int col, bool[,] visited)
         {
             if (row < 0 || col < 0 || row >= grid.Count || col >= grid[0].Count || grid[row][col] == 1 || visited[row, col])
                 return;

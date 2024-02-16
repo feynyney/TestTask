@@ -1,8 +1,22 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="size-fields">
+        <input id="height" />
+        <input id="width" />
+    </div>
+    
+    <div class="results-container">
+        <p id="result-count">
+            0
+        </p>
+    </div>
+
+    <div class="tiles-container" id="tiles-container"></div>  
 </div>
+
+<script src="/js/Tiles.js"></script>

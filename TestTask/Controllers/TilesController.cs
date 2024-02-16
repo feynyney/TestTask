@@ -18,7 +18,7 @@ namespace TestTask.Controllers
             _tileService = tilesService;
         }
 
-        [HttpPost]
+        [HttpPost("UpdateField")]
         public ActionResult<TilesResponseModel> OnPageUpdate(TilesRequestModel tilesRequest)
         {
             //написати валідацію (повертати статус коди)
