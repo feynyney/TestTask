@@ -1,14 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 
 <div class="container">
     <div class="size-fields">
-        <input id="height" />
-        <input id="width" />
+        <input id="height-input" placeholder="enter height" />
+        <input id="width-input" placeholder="enter width"/>
     </div>
+
+    <button class="submit-button" id="submit-button" onclick="submitData()">
+        Submit
+    </button>
     
     <div class="results-container">
         <p id="result-count">
