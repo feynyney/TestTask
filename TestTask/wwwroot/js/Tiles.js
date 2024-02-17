@@ -11,12 +11,40 @@ function submitData() {
 
     heightInput = document.getElementById("height-input").value;
     widthInput = document.getElementById("width-input").value;
-    console.log(heightInput, widthInput);
 
     fillEmptyMatrix(tiles);
-    console.log(tiles);
     renderLayout(tiles);
 }
+
+
+function updateField() {
+    var tilesArray = [];
+
+    for (var i = 0; i < tiles.length; i++) {
+        tilesArray.push(tiles[i].slice()); // Створюємо копію вкладеного масиву
+    }
+
+    var jsonData = JSON.stringify({ tiles: tilesArray });
+    console.log('Sending data: ', jsonData);
+
+    $.ajax({
+        url: 'https://localhost:7020/api/Tiles/UpdateField',
+        type: 'POST',
+        contentType: 'application/json',
+        data: jsonData,
+        success: function (response) {
+            console.log('Array sent successfully');
+            console.log('Server response:', response);
+            document.getElementById('response-text').innerText = response.countParts;
+        },
+        error: function (xhr, status, error) {
+            console.error('Error when sending array:', error);
+        }
+    });
+}
+
+
+
 
 
 /*почитати w3school jQuery
@@ -31,7 +59,6 @@ function submitData() {
 розміром гравця DONE, 
 пустий з 0 рендерити - відправляєм на сервер
 */
-
 
 function fillEmptyMatrix(tilesArray)
 {
@@ -74,12 +101,18 @@ $(document).ready(function () {
 });
 
 function toggleDisabledTile() {
+    var row = parseInt($(this).attr("row"));
+    var col = parseInt($(this).attr("col"));
+
     if ($(this).hasClass("disabled-tile")) {
-        $(this).removeClass("disabled-tile"); // Видаляємо клас, якщо він вже є
+        $(this).removeClass("disabled-tile");
+        tiles[row][col] = 0; // Оновлюємо значення у масиві
     } else {
-        $(this).addClass("disabled-tile"); // Додаємо клас, якщо його немає
+        $(this).addClass("disabled-tile");
+        tiles[row][col] = 1; // Оновлюємо значення у масиві
     }
 }
+
 
 
 

@@ -29,12 +29,17 @@ namespace TestTask
             }
 
             app.UseHttpsRedirection();
+
+  
+
             app.UseStaticFiles();
 
             app.UseSwagger();
             app.UseSwaggerUI();
 
             app.UseRouting();
+
+            app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseAuthorization();
 
