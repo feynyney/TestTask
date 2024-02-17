@@ -19,7 +19,6 @@ function submitData() {
 }
 
 
-
 /*почитати w3school jQuery
 створити onclick funcion  
 1- замальовувати натиснуту клітинку
@@ -29,7 +28,7 @@ function submitData() {
 не перемальовувати усі поле, 
 а лише клітинки що відрізняться)
 5- логіка для кнопки submit - створити поле за 
-розміром гравця, 
+розміром гравця DONE, 
 пустий з 0 рендерити - відправляєм на сервер
 */
 
@@ -42,10 +41,10 @@ function fillEmptyMatrix(tilesArray)
         for (var j = 0; j < widthInput; j++)
         {
             tilesArray[i][j] = 0;
+            tiles[0][0] = 1; //testing whether boxes are painted black
         }
     }
 }
-
 
 function renderLayout(tilesArray) {
     // Видаляємо попереднє поле
@@ -68,3 +67,19 @@ function renderLayout(tilesArray) {
         $("#tiles-container").append(newRow);
     }
 }
+
+$(document).ready(function () {
+    // Додаємо обробник подій для батьківського елемента, але обробляємо кліки для всіх елементів з класом ".tiles-element"
+    $("#tiles-container").on("click", ".tiles-element", toggleDisabledTile);
+});
+
+function toggleDisabledTile() {
+    if ($(this).hasClass("disabled-tile")) {
+        $(this).removeClass("disabled-tile"); // Видаляємо клас, якщо він вже є
+    } else {
+        $(this).addClass("disabled-tile"); // Додаємо клас, якщо його немає
+    }
+}
+
+
+
