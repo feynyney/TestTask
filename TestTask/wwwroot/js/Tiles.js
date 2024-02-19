@@ -121,4 +121,5 @@ function toggleDisabledTile() {
         $(this).addClass("disabled-tile");
         tiles[row][col] = 1; // Update array values
     }
+    updateField();
 }
