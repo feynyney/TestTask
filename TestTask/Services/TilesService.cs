@@ -6,7 +6,6 @@ namespace TestTask.Services
     public class TilesService : ITilesService
     {
         private readonly ILogger<TilesService> _logger;
-        private List<List<int>> _tiles;
 
         public TilesService(ILogger<TilesService> logger)
         {
@@ -16,11 +15,6 @@ namespace TestTask.Services
         public int GetCountParts(TilesRequestModel tilesRequestModel)
         {
             return CalculateParts(tilesRequestModel.Tiles);
-        }
-
-        public void SaveTiles(List<List<int>> tiles)
-        {
-            _tiles = tiles.ToList();
         }
 
         private static int CalculateParts(List<List<int>> grid)

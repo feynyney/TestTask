@@ -6,8 +6,8 @@
 
 <div class="container">
     <div class="size-fields">
-        <input id="height-input" placeholder="enter height" />
-        <input id="width-input" placeholder="enter width"/>
+        <input type="number" min="2" max="40" class="height-input" id="height-input" placeholder="enter height" />
+        <input type="number" min="2" max="40" class="width-input" id="width-input" placeholder="enter width" />
     </div>
 
     <button class="submit-button" id="submit-button" onclick="submitData()">
@@ -18,14 +18,13 @@
         Calculate
     </button>
     
-    <div class="results-container">
-        <p id="result-count">
-            0
+    <div class="tiles-container" id="tiles-container"></div>
+
+    <div class="results-container" id="results-container">
+        <p class="result-count-text" id="result-count-text">
+            Result: 
         </p>
     </div>
-
-    <div class="tiles-container" id="tiles-container"></div>  
-    <p class="response-text" id="response-text">1</p>
 </div>
 
 <script src="/js/Tiles.js"></script>

@@ -51,8 +51,6 @@ namespace TestTask.Controllers
                 }
             }  
 
-            _tileService.SaveTiles(tilesRequest.Tiles);
-
             int partsCount = _tileService.GetCountParts(tilesRequest);
 
             var result = new TilesResponseModel()

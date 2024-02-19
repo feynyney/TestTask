@@ -1,10 +1,11 @@
 ﻿const rowTemplate = `<div class="tiles-row" id="tiles-row"></div>`
 const elementTemplate = `<div class="tiles-element" id="tiles-element"></div>`
+const validationTemplate = `<p id="validation-text"></p>`
 
 var tiles = [];
 
-var heightInput;
-var widthInput;
+let heightValue;
+let widthValue;
 
 function submitData() {
     tiles = []; // Очищаємо масив
@@ -12,6 +13,21 @@ function submitData() {
     heightInput = document.getElementById("height-input").value;
     widthInput = document.getElementById("width-input").value;
 
+    heightValue = parseInt(heightInput);
+    widthValue = parseInt(widthInput);
+
+    if (!isNaN(heightValue) && !isNaN(widthValue)) {
+        // Введене значення є цілим числом
+        console.log("Введене значення є цілим числом: ");
+        $("#validation-text").remove();
+
+    } else {
+
+        var validationElement = $(validationTemplate)
+            .text("Введене значення не є цілим числом. Будь ласка, введіть ціле число.");
+        $("#results-container").append(validationElement);
+        // Введене значення не може бути перетворене в ціле число
+    }
     fillEmptyMatrix(tiles);
     renderLayout(tiles);
 }
@@ -35,7 +51,7 @@ function updateField() {
         success: function (response) {
             console.log('Array sent successfully');
             console.log('Server response:', response);
-            document.getElementById('response-text').innerText = response.countParts;
+            document.getElementById('result-count-text').innerText = "Result: " + response.countParts;
         },
         error: function (xhr, status, error) {
             console.error('Error when sending array:', error);
@@ -43,33 +59,19 @@ function updateField() {
     });
 }
 
-
-
-
-
-/*почитати w3school jQuery
-створити onclick funcion  
-1- замальовувати натиснуту клітинку
-2- витягувати стан поля на клієнті 
-3- відправляти стан поля на контролер
-4- перемальовувати поле по респонсу(завдання з *
-не перемальовувати усі поле, 
-а лише клітинки що відрізняться)
-5- логіка для кнопки submit - створити поле за 
-розміром гравця DONE, 
-пустий з 0 рендерити - відправляєм на сервер
-*/
-
 function fillEmptyMatrix(tilesArray)
 {
-    for (var i = 0; i < heightInput; i++)
-    {
-        tilesArray[i] = [];
-        for (var j = 0; j < widthInput; j++)
-        {
-            tilesArray[i][j] = 0;
-            tiles[0][0] = 1; //testing whether boxes are painted black
+    if (heightInput > 1 && widthValue > 1) {
+        for (var i = 0; i < heightValue; i++) {
+            tilesArray[i] = [];
+            for (var j = 0; j < widthValue; j++) {
+                tilesArray[i][j] = 0;
+            }
         }
+    }
+    else
+    {
+        console.log("Matrix cannot be less then 2x2!");
     }
 }
 

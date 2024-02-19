@@ -6,7 +6,5 @@ namespace TestTask.Services.Interfaces
     {
         int GetCountParts(TilesRequestModel tilesRequestModel);
 
-        public void SaveTiles(List<List<int>> tiles);
-
     }
 }
