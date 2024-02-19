@@ -6,9 +6,11 @@ var tiles = [];
 
 let heightValue;
 let widthValue;
+var validationElement = $(validationTemplate);
+var result = document.getElementById('result-count-text');;
 
 function submitData() {
-    tiles = []; // Очищаємо масив
+    tiles = []; // Clearing an array
 
     heightInput = document.getElementById("height-input").value;
     widthInput = document.getElementById("width-input").value;
@@ -16,28 +18,41 @@ function submitData() {
     heightValue = parseInt(heightInput);
     widthValue = parseInt(widthInput);
 
+    $("#validation-text").remove();
+
+    //if entered values are integers
     if (!isNaN(heightValue) && !isNaN(widthValue)) {
-        // Введене значення є цілим числом
-        console.log("Введене значення є цілим числом: ");
-        $("#validation-text").remove();
+        if (heightValue < 2 || widthValue < 2) {
+            validationElement
+                .text("Martix cannot be less than 2x2!");
+            $("#results-container").append(validationElement);
 
-    } else {
-
-        var validationElement = $(validationTemplate)
-            .text("Введене значення не є цілим числом. Будь ласка, введіть ціле число.");
+            result.innerText = "";
+        }
+        else {
+            // Checking if entered values are ok
+            console.log("Entered value is an integer OK ");
+        }
+    }
+    else {
+        // Entered value is not an integer
+        validationElement
+            .text("Entered value must be an integer!");
         $("#results-container").append(validationElement);
-        // Введене значення не може бути перетворене в ціле число
+
+        result.innerText = "";
     }
     fillEmptyMatrix(tiles);
     renderLayout(tiles);
 }
 
 
+
 function updateField() {
     var tilesArray = [];
 
     for (var i = 0; i < tiles.length; i++) {
-        tilesArray.push(tiles[i].slice()); // Створюємо копію вкладеного масиву
+        tilesArray.push(tiles[i].slice()); // Copy array
     }
 
     var jsonData = JSON.stringify({ tiles: tilesArray });
@@ -51,7 +66,7 @@ function updateField() {
         success: function (response) {
             console.log('Array sent successfully');
             console.log('Server response:', response);
-            document.getElementById('result-count-text').innerText = "Result: " + response.countParts;
+            result.innerText = "Result: " + response.countParts;
         },
         error: function (xhr, status, error) {
             console.error('Error when sending array:', error);
@@ -71,12 +86,12 @@ function fillEmptyMatrix(tilesArray)
     }
     else
     {
-        console.log("Matrix cannot be less then 2x2!");
+        console.log("error!");
     }
 }
 
 function renderLayout(tilesArray) {
-    // Видаляємо попереднє поле
+    // delete previous field
     $("#tiles-container").empty();
 
     for (var i = 0; i < tilesArray.length; i++) {
@@ -98,7 +113,7 @@ function renderLayout(tilesArray) {
 }
 
 $(document).ready(function () {
-    // Додаємо обробник подій для батьківського елемента, але обробляємо кліки для всіх елементів з класом ".tiles-element"
+    // Events for clicking on fields
     $("#tiles-container").on("click", ".tiles-element", toggleDisabledTile);
 });
 
@@ -108,10 +123,10 @@ function toggleDisabledTile() {
 
     if ($(this).hasClass("disabled-tile")) {
         $(this).removeClass("disabled-tile");
-        tiles[row][col] = 0; // Оновлюємо значення у масиві
+        tiles[row][col] = 0; // Update array values
     } else {
         $(this).addClass("disabled-tile");
-        tiles[row][col] = 1; // Оновлюємо значення у масиві
+        tiles[row][col] = 1; // Update array values
     }
 }
 

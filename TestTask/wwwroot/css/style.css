@@ -20,8 +20,15 @@
     margin-bottom: 20px;
 }
 
+.hint-box {
+    margin-left: 20px;
+}
+
 .container {
-    
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start; 
 }
 
 .height-input, .width-input {

@@ -5,26 +5,35 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <div class="container">
-    <div class="size-fields">
-        <input type="number" min="2" max="40" class="height-input" id="height-input" placeholder="enter height" />
-        <input type="number" min="2" max="40" class="width-input" id="width-input" placeholder="enter width" />
+    <div class="inner-container">
+        <div class="size-fields">
+            <input type="number" min="2" max="40" class="height-input" id="height-input" placeholder="Height" />
+            <input type="number" min="2" max="40" class="width-input" id="width-input" placeholder="Width" />
+        </div>
+        <div class="buttons-container">
+            <button class="submit-button" id="submit-button" onclick="submitData()">Create field</button>
+            <button class="calculate-button" id="calculate-button" onclick="updateField()">Calculate</button>
+        </div>
+
+        <div class="tiles-container" id="tiles-container"></div>
+
+        <div class="results-container" id="results-container">
+            <p class="result-count-text" id="result-count-text"></p>
+        </div>
     </div>
 
-    <button class="submit-button" id="submit-button" onclick="submitData()">
-        Submit
-    </button>
-
-    <button class="calculate-button" id="calculate-button" onclick="updateField()">
-        Calculate
-    </button>
-    
-    <div class="tiles-container" id="tiles-container"></div>
-
-    <div class="results-container" id="results-container">
-        <p class="result-count-text" id="result-count-text">
-            Result: 
+    <div class="hint-box">
+        <h1>How to use</h1>
+        <p>
+            1) Enter field size Height and Width <br>
+            2) Click Create field button <br>
+            3) Click on field tiles to cut them out <br>
+            4) Click Calculate to get result <br>
+            <p style="color: red"> CAUTION </p>
+            Input field must contain only Integer, field cannot be less than 2x2!
         </p>
     </div>
 </div>
+
 
 <script src="/js/Tiles.js"></script>
