@@ -1,17 +1,16 @@
-﻿const rowTemplate = `<div class="tiles-row" id="tiles-row"></div>`
-const elementTemplate = `<div class="tiles-element" id="tiles-element"></div>`
-const validationTemplate = `<p id="validation-text"></p>`
+﻿const rowTemplate = `<div class="tiles-row" id="tiles-row"></div>`;
+const elementTemplate = `<div class="tiles-element" id="tiles-element"></div>`;
+const validationTemplate = `<p id="validation-text"></p>`;
 
 var tiles = [];
-
 let heightValue;
 let widthValue;
 var validationElement = $(validationTemplate);
-var result = document.getElementById('result-count-text');;
+var result = $('#result-count-text');
 
 function submitData() {
     tiles = []; // Clearing an array
-
+    result.text("");
     heightInput = document.getElementById("height-input").value;
     widthInput = document.getElementById("width-input").value;
 
@@ -24,10 +23,9 @@ function submitData() {
     if (!isNaN(heightValue) && !isNaN(widthValue)) {
         if (heightValue < 2 || widthValue < 2) {
             validationElement
-                .text("Martix cannot be less than 2x2!");
+                .text("Matrix cannot be less than 2x2!");
             $("#results-container").append(validationElement);
-
-            result.innerText = "";
+            result.text("");
         }
         else {
             // Checking if entered values are ok
@@ -39,14 +37,11 @@ function submitData() {
         validationElement
             .text("Entered value must be an integer!");
         $("#results-container").append(validationElement);
-
-        result.innerText = "";
+        result.text("");
     }
     fillEmptyMatrix(tiles);
     renderLayout(tiles);
 }
-
-
 
 function updateField() {
     var tilesArray = [];
@@ -66,7 +61,7 @@ function updateField() {
         success: function (response) {
             console.log('Array sent successfully');
             console.log('Server response:', response);
-            result.innerText = "Result: " + response.countParts;
+            result.text("Result: " + response.countParts);
         },
         error: function (xhr, status, error) {
             console.error('Error when sending array:', error);
@@ -74,8 +69,7 @@ function updateField() {
     });
 }
 
-function fillEmptyMatrix(tilesArray)
-{
+function fillEmptyMatrix(tilesArray) {
     if (heightInput > 1 && widthValue > 1) {
         for (var i = 0; i < heightValue; i++) {
             tilesArray[i] = [];
@@ -84,8 +78,7 @@ function fillEmptyMatrix(tilesArray)
             }
         }
     }
-    else
-    {
+    else {
         console.log("error!");
     }
 }
@@ -129,7 +122,3 @@ function toggleDisabledTile() {
         tiles[row][col] = 1; // Update array values
     }
 }
-
-
-
-
