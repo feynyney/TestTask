@@ -11,6 +11,8 @@ namespace TestTask.Controllers
     {
         private readonly ILogger<TilesController> _logger;
         private readonly ITilesService _tileService;
+        private int minSize = 2;
+        private int maxSize = 30;
 
         public TilesController(ILogger<TilesController> logger, ITilesService tilesService)
         {
@@ -28,9 +30,14 @@ namespace TestTask.Controllers
             //
 
             //validate matrix size
-            if (tilesRequest.Tiles.Count < 2 || tilesRequest.Tiles[0].Count < 2) 
+            if (tilesRequest.Tiles.Count < minSize || tilesRequest.Tiles[0].Count < minSize) 
             {
-                return BadRequest("Matrix cannot be less then 2x2!");
+                return BadRequest("Matrix cannot be less than 2x2 !");
+            }
+
+            else if (tilesRequest.Tiles.Count > maxSize || tilesRequest.Tiles[0].Count > maxSize)
+            {
+                return BadRequest("Matrix cannot be more than 30x30 !");
             }
 
             //validate whether matrix has wrong values and same size lists

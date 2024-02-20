@@ -7,8 +7,8 @@
 <div class="container">
     <div class="inner-container">
         <div class="size-fields">
-            <input type="number" min="2" max="40" class="size-input" id="height-input" placeholder="Height" />
-            <input type="number" min="2" max="40" class="size-input" id="width-input" placeholder="Width" />
+            <input type="number" min="2" max="30" class="size-input" id="height-input" placeholder="Height" />
+            <input type="number" min="2" max="30" class="size-input" id="width-input" placeholder="Width" />
         </div>
         <div class="buttons-container">
             <button class="operation-button" id="submit-button" onclick="submitData()">Create field</button>
@@ -26,10 +26,9 @@
         <p>
             1) Enter field size Height and Width <br>
             2) Click Create field button <br>
-            3) Click on field tiles to cut them out <br>
-            4) Click Calculate to get result <br>
+            3) Click on field tiles to cut them out, result will be updated after every click <br>
         <p style="color: red"> CAUTION </p>
-        Input field must contain only Integer, field cannot be less than 2x2!
+        Input field must contain only Integer, field must be between 2x2 and 30x30!
         </p>
     </div>
 </div>

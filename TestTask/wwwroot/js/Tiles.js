@@ -5,6 +5,9 @@ const validationTemplate = `<p id="validation-text"></p>`;
 var tiles = [];
 let heightValue;
 let widthValue;
+let minSize = 2;
+let maxSize = 30;
+
 var validationElement = $(validationTemplate);
 var result = $('#result-count-text');
 
@@ -21,9 +24,9 @@ function submitData() {
 
     //if entered values are integers
     if (!isNaN(heightValue) && !isNaN(widthValue)) {
-        if (heightValue < 2 || widthValue < 2) {
+        if (heightValue < minSize || heightValue > maxSize || widthValue < minSize || widthValue > maxSize) {
             validationElement
-                .text("Matrix cannot be less than 2x2!");
+                .text("Matrix size must be between 2x2 and 30x30!");
             $("#results-container").append(validationElement);
             result.text("");
         }
@@ -42,6 +45,7 @@ function submitData() {
     fillEmptyMatrix(tiles);
     renderLayout(tiles);
 }
+
 
 function updateField() {
     var tilesArray = [];
@@ -70,7 +74,7 @@ function updateField() {
 }
 
 function fillEmptyMatrix(tilesArray) {
-    if (heightInput > 1 && widthValue > 1) {
+    if (heightInput >= minSize && widthValue >= minSize && heightInput <= maxSize && widthValue <= maxSize) {
         for (var i = 0; i < heightValue; i++) {
             tilesArray[i] = [];
             for (var j = 0; j < widthValue; j++) {
