@@ -47,7 +47,7 @@ namespace TestTask.Services
 
             visited[row, col] = true;
 
-            // Перевірка сусідніх клітинок
+            // Check nearby fields
             DFS(grid, row + 1, col, visited);
             DFS(grid, row - 1, col, visited);
             DFS(grid, row, col + 1, visited);

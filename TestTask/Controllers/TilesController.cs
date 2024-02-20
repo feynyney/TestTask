@@ -23,11 +23,6 @@ namespace TestTask.Controllers
         [HttpPost("UpdateField")]
         public ActionResult<TilesResponseModel> OnPageUpdate(TilesRequestModel tilesRequest)
         {
-            //написати валідацію (повертати статус коди)
-            //Вкладені лісти мають бути однакового розміру
-            //Якщо не 1 або 0 => bad request
-            //Якщо поле менше 3х3 => bad request
-            //
 
             //validate matrix size
             if (tilesRequest.Tiles.Count < minSize || tilesRequest.Tiles[0].Count < minSize) 
